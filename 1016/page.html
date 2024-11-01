@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Page A</title>
+    <style>
+        /* 设置页面居中和背景样式 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* 包含图片的容器 */
+        .image-container {
+            position: relative;
+            width: 400px; /* 根据图片大小设置 */
+            height: 400px; /* 根据图片大小设置 */
+            background-image: url('./images/answer.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        /* 按钮样式 */
+        .button {
+            position: absolute;
+            padding: 38px 175px;
+            color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.3); /* 半透明白色边框 */
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* 设置按钮在图片上的具体位置 */
+        .button-a { top: 0%; left: 8%; } /* A 按钮的位置 */
+        .button-b { top: 22%; left: 8%; } /* B 按钮的位置 */
+        .button-c { top: 44%; left: 8%; } /* C 按钮的位置 */
+        .button-d { top: 66%; left: 8%; } /* d 按钮的位置 */
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <!-- 跳转按钮 -->
+        <button class="button button-a" onclick="redirectToWaitingPage('waitingA.html')"></button>
+        <button class="button button-b" onclick="redirectToWaitingPage('waitingB.html')"></button>
+        <button class="button button-c" onclick="redirectToWaitingPage('waitingC.html')"></button>
+        <button class="button button-d" onclick="redirectToWaitingPage('waitingD.html')"></button>
+    </div>
+
+    <script>
+        function redirectToWaitingPage(waitingPage) {
+            // 跳转到不同的等待页面
+            window.location.href = waitingPage;
+        }
+    </script>
+</body>
+
