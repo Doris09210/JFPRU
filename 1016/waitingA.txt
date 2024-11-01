@@ -24,12 +24,11 @@
             color: #333;
             margin-top: 20px;
         }
-        
     </style>
 </head>
 <body>
-   
-    <img src="images/loadingC.jpg" alt="Loading..." class="loading-image">
+    
+    <img src="images/loadingA.jpg" alt="Loading..." class="loading-image">
     <div class="loading-text">我猜你知道的</div>    
 
     <script>

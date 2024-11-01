@@ -24,17 +24,18 @@
             color: #333;
             margin-top: 20px;
         }
+        
     </style>
 </head>
 <body>
-    <!-- 加载 GIF 动画 -->
+  
     <img src="images/loadingB.jpg" alt="Loading..." class="loading-image">
-    <div class="loading-text">觉得你知道的</div>
+    <div class="loading-text">我猜你知道的</div>    
 
     <script>
         // 设置延迟跳转到微信链接
         setTimeout(() => {
-            window.location.href = "https://weixin.qq.com"; // 替换为微信目标链接
+            window.location.href = "weixin://";
         }, 3000); // 3秒延迟
     </script>
 </body>
