@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+        }
+        .loading-image {
+            width: 100px;
+            height: auto;
+        }
+        .loading-text {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+   
+    <img src="images/loadingC.jpg" alt="Loading..." class="loading-image">
+    <div class="loading-text">我猜你知道的</div>    
+
+    <script>
+        // 设置延迟跳转到微信链接
+        setTimeout(() => {
+            window.location.href = "weixin://";
+        }, 3000); // 3秒延迟
+    </script>
+</body>
+</html>

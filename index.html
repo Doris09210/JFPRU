@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>加密内容</h1>
+    <p>请询问杜女士获取密码</p>
+    <button id="nextButton">点击输入密码</button>
+
+    <script>
+        // 打开小弹窗播放音乐
+        function openMusicWindow() {
+            const musicWindow = window.open("audio.html", "musicWindow", "width=100,height=100");
+            if (!musicWindow) {
+                alert("请允许弹出窗口以播放背景音乐。");
+            }
+        }
+
+        // 页面加载时打开音乐窗口
+        window.addEventListener("load", openMusicWindow);
+
+        // 跳转页面并检查密码
+        document.getElementById("nextButton").addEventListener("click", function() {
+            const password = prompt("Please enter the password to proceed:");
+
+            if (password === "20241016") {
+        // 在用户点击后打开弹窗
+        const musicWindow = window.open("audio.html", "musicWindow", "width=100,height=100");
+        if (!musicWindow) {
+            alert("请允许弹出窗口以播放背景音乐。");
+        }
+        // 跳转到下一个页面
+        window.location.href = "option.html";
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Image with Options</title>
+    <style>
+        /* 设置页面居中和背景样式 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* 包含图片的容器 */
+        .image-container {
+            position: relative;
+            width: 400px; /* 根据图片大小设置 */
+            height: 400px; /* 根据图片大小设置 */
+            background-image: url('./images/question.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        /* 按钮样式 */
+        .button {
+            position: absolute;
+            padding: 25px 120px;
+            color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.3); /* 半透明白色边框 */
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* 设置按钮在图片上的具体位置 */
+        .button-a { top: 40%; left: 18%; } /* A 按钮的位置 */
+        .button-b { top: 55%; left: 18%; } /* B 按钮的位置 */
+        .button-c { top: 70%; left: 18%; } /* C 按钮的位置 */
+        
+    </style>
+</head>
+<body>
+    
+
+    <div class="image-container">
+        <!-- 跳转按钮 -->
+        <button class="button button-a" onclick="redirectToWaitingPage('page.html')"></button>
+        <button class="button button-b" onclick="redirectToWaitingPage('page.html')"></button>
+        <button class="button button-c" onclick="redirectToWaitingPage('page.html')"></button>
+    </div>
+
+    <script>
+        
+        function redirectToWaitingPage(targetUrl) {
+            // 跳转到等待页并传递目标页面URL作为参数
+            window.location.href = `waiting.html?target=${encodeURIComponent(targetUrl)}`;
+        }
+    </script>
+</body>
+</html>

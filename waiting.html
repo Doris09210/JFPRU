@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        /* 等待页样式 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            flex-direction: column;
+        }
+        .loading-text {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+        /* GIF 图片的样式 */
+        .loading-image {
+            width: 400px; /* 根据需要调整大小 */
+            height: auto;
+        }
+        
+    </style>
+</head>
+<body>
+   
+    <!-- 显示 GIF 动画 -->
+    <img src="images/waiting.gif" alt="Loading..." class="loading-image">
+    <div class="loading-text"></div>
+
+    <script>
+        // 获取目标页面 URL 参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetUrl = urlParams.get('target');
+
+        // 等待3秒后跳转到目标页面
+        if (targetUrl) {
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 3000); // 延迟3秒
+        } else {
+            // 如果没有目标页面，显示错误信息
+            document.querySelector('.loading-text').textContent = "Invalid target URL.";
+        }
+    </script>
+</body>
+</html>
