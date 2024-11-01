@@ -42,12 +42,9 @@
         .button-a { top: 40%; left: 18%; } /* A 按钮的位置 */
         .button-b { top: 55%; left: 18%; } /* B 按钮的位置 */
         .button-c { top: 70%; left: 18%; } /* C 按钮的位置 */
-        
     </style>
 </head>
 <body>
-    
-
     <div class="image-container">
         <!-- 跳转按钮 -->
         <button class="button button-a" onclick="redirectToWaitingPage('page.html')"></button>
@@ -56,11 +53,10 @@
     </div>
 
     <script>
-        
         function redirectToWaitingPage(targetUrl) {
             // 跳转到等待页并传递目标页面URL作为参数
             window.location.href = `waiting.html?target=${encodeURIComponent(targetUrl)}`;
         }
     </script>
 </body>
-</html>
+
