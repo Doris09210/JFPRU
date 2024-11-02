@@ -46,21 +46,28 @@
     </style>
 </head>
 <body>
-    
-
-    <div class="image-container">
-        <!-- 跳转按钮 -->
-        <button class="button button-a" onclick="redirectToWaitingPage('page.html')"></button>
-        <button class="button button-b" onclick="redirectToWaitingPage('page.html')"></button>
-        <button class="button button-c" onclick="redirectToWaitingPage('page.html')"></button>
+    <div id="option-content">
+        <div class="image-container">
+            <!-- 添加了 id 属性的按钮 -->
+            <button id="buttonA" class="button button-a"></button>
+            <button id="buttonB" class="button button-b"></button>
+            <button id="buttonC" class="button button-c"></button>
+        </div>
     </div>
 
     <script>
-        
-        function redirectToWaitingPage(targetUrl) {
-            // 跳转到等待页并传递目标页面URL作为参数
-            window.location.href = `waiting.html?target=${encodeURIComponent(targetUrl)}`;
-        }
+        // 直接绑定按钮事件
+        document.getElementById('buttonA').addEventListener('click', function() {
+            // 加载 waiting.html，并传递目标页面 URL
+            loadWaitingPage('waiting.html?target=page.html', 'option-content','page.html');
+        });
+        document.getElementById('buttonB').addEventListener('click', function() {
+            loadWaitingPage('waiting.html?target=page.html', 'option-content','page.html');
+        });
+        document.getElementById('buttonC').addEventListener('click', function() {
+            loadWaitingPage('waiting.html?target=page.html', 'option-content','page.html');
+        });
     </script>
+    
 </body>
 </html>

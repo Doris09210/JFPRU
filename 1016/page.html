@@ -47,19 +47,32 @@
     </style>
 </head>
 <body>
-   
-    <div class="image-container">
-        <!-- 跳转按钮 -->
-        <button class="button button-a" onclick="redirectToWaitingPage('waitingA.html')"></button>
-        <button class="button button-b" onclick="redirectToWaitingPage('waitingB.html')"></button>
-        <button class="button button-c" onclick="redirectToWaitingPage('waitingC.html')"></button>
-        <button class="button button-d" onclick="redirectToWaitingPage('waitingD.html')"></button>
-    </div>
+<!-- 在 <body> 中 -->
 
+    <div id="page-content">
+        <div class="image-container">
+            <!-- 跳转按钮 -->
+            <button class="button button-a" id="buttonA"></button>
+            <button class="button button-b" id="buttonB"></button>
+            <button class="button button-c" id="buttonC"></button>
+            <button class="button button-d" id="buttonD"></button>
+        </div>
+    </div>
+    
     <script>
-        function redirectToWaitingPage(waitingPage) {
-            // 跳转到不同的等待页面
-            window.location.href = waitingPage;
-        }
+        // 绑定按钮事件
+        document.getElementById('buttonA').addEventListener('click', function() {
+            loadWaitingPage('waitingA.html', 'page-content');
+        });
+        document.getElementById('buttonB').addEventListener('click', function() {
+            loadWaitingPage('waitingB.html', 'page-content');
+        });
+        document.getElementById('buttonC').addEventListener('click', function() {
+            loadWaitingPage('waitingC.html', 'page-content');
+        });
+        document.getElementById('buttonD').addEventListener('click', function() {
+            loadWaitingPage('waitingD.html', 'page-content');
+        });
     </script>
+    
 </body>

@@ -13,6 +13,9 @@
             height: 100vh;
             margin: 0;
             background-color: #f3f3f3;
+            transform: scale(1); /* 将内容缩放到100% */
+            transform-origin: top left; /* 以左上角为原点缩放 */
+            flex-direction: column; /* 垂直排列元素 */
         }
 
         /* 圆形图片旋转效果 */
@@ -21,6 +24,7 @@
             height: 50px;
             border-radius: 50%;
             animation: spin 5s linear infinite;
+            margin-bottom: 5px; /* 图片与按钮之间的间距 */
         }
 
         /* 旋转动画 */
@@ -28,6 +32,18 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+
+        /* 按钮样式 */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #6200ea;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
         /* 去掉浏览器默认样式，让弹窗看起来简洁 */
         html, body {
             background: none;
@@ -38,18 +54,25 @@
     <!-- 旋转的图片 -->
     <img src="images/music icon.jpg" alt="Playing Music" class="rotating-image">
 
+    <!-- 播放音乐的按钮 -->
+    <button onclick="playMusic()">Play Music</button>
+
     <!-- 隐藏的音频播放器，循环播放音乐 -->
-    <audio id="background-music" autoplay loop>
+    <audio id="background-music" loop>
         <source src="images/pancakes for dinner.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
     <script>
-        // 确保音乐播放
+        // 获取音乐元素
         const music = document.getElementById("background-music");
-        music.play().catch(error => {
-            console.log("自动播放受限，用户需要手动启动音频播放");
-        });
+
+        // 确保用户交互触发播放音乐
+        function playMusic() {
+            music.play().catch(error => {
+                console.log("无法播放音频", error);
+            });
+        }
     </script>
 </body>
 </html>

@@ -1,43 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
+    <!-- 其他<head>内容 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>加密内容</title>
+    <style>
+        /* 设置页面全局样式，取消默认的外边距和内边距 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* 设置父容器，使其占满整个屏幕并启用 flex 布局 */
+        .container {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center;     /* 垂直居中 */
+            height: 100%;
+            background-color: #f3f3f3; /* 可根据需要设置背景颜色 */
+        }
+
+        /* 登录内容的样式 */
+        #login-content {
+            text-align: center; /* 使内容居中 */
+        }
+
+        #login-content h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #login-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+            #nextButton {
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        background-color: rgba(70, 147, 213, 0.5); /* 蓝色背景，透明度 20% */
+        color: #FFFFFF; /* 白色文字 */
+        border: none;
+        border-radius: 8px;
+    }
+
+
+    </style>
 </head>
 <body>
-    <h1>加密内容</h1>
-    <p>请询问杜女士获取密码</p>
-    <button id="nextButton">点击输入密码</button>
+    <!-- 登录内容容器 -->
+    <div id="login-content">
+        <h1>加密内容</h1>
+        <p>请询问杜女士获取密码</p>
+        <button id="nextButton">点击输入密码</button>
+    </div>
+
+    <!-- 音频播放器 -->
+    <audio id="background-music" loop>
+        <source src="images/pancakes for dinner.mp3" type="audio/mp3">
+        您的浏览器不支持 audio 元素。
+    </audio>
+
+    <!-- 用于加载新内容的容器 -->
+    <div id="main-content"></div>
 
     <script>
-        // 打开小弹窗播放音乐
-        function openMusicWindow() {
-            const musicWindow = window.open("audio.html", "musicWindow", "width=100,height=100");
-            if (!musicWindow) {
-                alert("请允许弹出窗口以播放背景音乐。");
-            }
-        }
+        // 获取音乐元素
+        const music = document.getElementById("background-music");
 
-        // 页面加载时打开音乐窗口
-        window.addEventListener("load", openMusicWindow);
-
-        // 跳转页面并检查密码
+        // 跳转页面并检查密码，同时播放音乐
         document.getElementById("nextButton").addEventListener("click", function() {
-            const password = prompt("Please enter the password to proceed:");
+            const password = prompt("请输入密码以继续：");
 
             if (password === "20241016") {
-        // 在用户点击后打开弹窗
-        const musicWindow = window.open("audio.html", "musicWindow", "width=100,height=100");
-        if (!musicWindow) {
-            alert("请允许弹出窗口以播放背景音乐。");
-        }
-        // 跳转到下一个页面
-        window.location.href = "option.html";
+                // 播放音乐
+                music.play().catch(error => {
+                    console.log("无法播放音频", error);
+                });
+
+                // 加载 option 页面，并隐藏登录页面内容
+                loadPage('option.html', 'login-content');
             } else {
-                alert("Incorrect password. Please try again.");
+                alert("密码错误，请重试。");
             }
         });
+
+        // 通用的加载页面函数
+        
+        function loadPage(pageUrl, hideContentId, options = null) {
+            fetch(pageUrl)
+                .then(response => response.text())
+                .then(html => {
+                    // 隐藏指定的内容
+                    if (hideContentId) {
+                        document.getElementById(hideContentId).style.display = 'none';
+                    }
+
+                    // 如果提供了选项，进行占位符替换
+                    if (options) {
+                        for (const key in options) {
+                            const placeholder = new RegExp(`{{${key}}}`, 'g');
+                            html = html.replace(placeholder, options[key]);
+                        }
+                    }
+
+                    // 插入新内容
+                    const contentDiv = document.getElementById('main-content');
+                    contentDiv.innerHTML = html;
+
+                    // 在下一次事件循环中执行脚本，确保 DOM 已更新
+                    setTimeout(function() {
+                        executeScripts(html);
+                    }, 0);
+                })
+                .catch(error => {
+                    console.error(`加载 ${pageUrl} 时出错：`, error);
+                });
+        }
+
+        // 全局的 executeScripts 函数
+        function executeScripts(html) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const scripts = tempDiv.querySelectorAll('script');
+
+            scripts.forEach(script => {
+                const newScript = document.createElement('script');
+                if (script.src) {
+                    newScript.src = script.src;
+                } else {
+                    newScript.textContent = script.textContent;
+                }
+                document.body.appendChild(newScript);
+            });
+        }
+
+        // 将 loadWaitingPage 和 loadFinalPage 函数也定义在主页面中
+        // index.html 中
+        window.loadWaitingPage = function(waitingPageUrl, hideContentId, targetUrl) {
+            loadPage(waitingPageUrl, hideContentId, { 'TARGET_URL': targetUrl });
+        };
+
+        window.loadFinalPage = function(finalPageUrl, hideContentId) {
+            loadPage(finalPageUrl, hideContentId);
+        };
     </script>
 </body>
 </html>
